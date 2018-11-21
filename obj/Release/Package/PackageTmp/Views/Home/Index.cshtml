@@ -1,0 +1,1826 @@
+﻿
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+
+
+    <link href="../Images/icon.ico" type="image/x-icon" rel="shortcut icon" />
+    <title>Перепланировки и Согласования | МосПроектСтрой</title>
+    <meta name="description" content="Согласование и перепланировка помещений в Москве и МО недорого." />
+    <meta name="keywords" content="Перепланировка, согласование," />
+    <meta name="robots" content="index, nofollow" />
+
+    <link href="~/Content/bootstrap.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap-grid.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap-grid.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap-reboot.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap-reboot.min.css" rel="stylesheet" type="text/css" />
+    <!-- <link href="~/Content/bootstrap-theme.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap-theme.min.css" rel="stylesheet" type="text/css" />-->
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src="~/Scripts/jquery.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/bootstrap.js" type="text/javascript"></script>
+    <!--<script src="js/bootstrap.bundle.js" type="text/javascript"></script>
+    <script src="js/bootstrap.bundle.min.js" type="text/javascript"></script>
+    <script src="js/bootstrap.js" type="text/javascript"></script>
+    <script src="js/bootstrap.min.js" type="text/javascript"></script>-->
+    <script src="~/Scripts/jquery.maskedinput.min.js" type="text/javascript"></script>
+
+
+
+
+
+
+    <meta charset="windows-1251">
+</head>
+
+<body>
+    <!-- Спасибо -->
+    <div class="modal fade" id="ThanksModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="background: rgb(255, 255, 255, 0)">
+        <div class="modal-dialog" role="document" style="background: rgb(255, 255, 255, 0)">
+            <div class="modal-content" style="background: rgb(255, 255, 255, 0.9)">
+
+                <div class="modal-body">
+                    <center><h1 style="color:forestgreen">Спасибо!<br />Наш специалист свяжется с вами в ближайшее время.</h1></center>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <style>
+        .head1 {
+            height: 90px;
+            box-shadow: 0 2px 10px rgba(0,0,0,.12);
+            z-index: 999;
+            width: 100%;
+            margin: auto
+        }
+
+        .navbar {
+            z-index: 2;
+            margin: 0px;
+            box-shadow: 0px 3px 10px 0px rgba(0,0,0,.08);
+        }
+
+        .text1 {
+            font-size: 16px;
+            margin: 20px;
+        }
+
+        .logo {
+            z-index: 999;
+            right: 60px;
+            width: 110%;
+        }
+    </style>
+
+    <script type="text/javascript">
+            function sendCallback(fio, phone, email, showmodal) {
+                if (phone == 'admin') {
+                    window.open("@Url.Action("Auth", "Admin")");
+                    return;
+                }
+                $.ajax({
+                    dataType: "json",
+                    type: "POST",
+                    url: '/Home/SetCallback',
+                    data: {
+                        fio: fio,
+                        phone: phone,
+                        email: email,
+                    },
+                    complete: function (date) {
+                    },                    
+                })
+
+                if (showmodal != 0) $("#ThanksModal").modal('show');
+                setTimeout(function () { $('#ThanksModal').modal('hide') }, 1000);
+            }
+    </script>
+
+    <div class="container-fluid" style="padding: 0;">
+        <div class="header">
+            <div class="row head1">
+                <div class="col-md-2 offset-md-2">
+                    <h2 style="margin-top:25px;">PANDA INTERIOR</h2>
+                </div>
+                <div class="col-md-1 offset-md-2 logo">
+                    <img src="../Images/logo.png" alt="site identity" class="logo" style="height:141px; width: auto;" />
+                </div>
+                <div class="col-md-2 offset-md-2" style=" font: normal normal 400 normal 16px/normal 'PF Din Text Cond Pro'">
+                    <p class="text1" style="width:200px;">
+                        <b><a href="tel:+79260455805" style="color:black">8 (926) 045-58-05</a></b>
+                        <br> Звоните с 9:00 до 21:00
+                        <br> <text>Без выходных</text>
+                    </p>
+                </div>
+
+            </div>
+            <style>
+                .fix {
+                    position: fixed;
+                }
+            </style>
+            <nav class="navbar navbar-default">
+                <div class="container" style="font-size:13px;">
+                    <ul class="nav navbar-nav .center-block">
+                        <li><a href=".nav">Главная</a></li>
+                        <li><a href="#portfolio">Портфолио</a></li>
+                        <li><a href="#DIV_1">Работа с нами</a></li>
+                        <!--<li><a href="#inf">О компании</a></li>-->
+                        <li><a href="#onlinecalc">Онлайн калькулятор</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav .center-block" style="float: right; font-size: 11px">
+                        @*<li class="active"><a href="#" style="color: red;" data-toggle="modal" data-target="#myModal1" onclick="yaCounter46545546.reachGoal('saleMenu')">Оставить заявку</a></li>*@
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <style>
+            @@font-face {
+                font-family: "PF Din Text Cond Pro";
+                src: url('../fonts/PF Din Text Cond Pro.ttf') format("truetype");
+            }
+
+
+
+            .body1 {
+                height: 700px;
+                background-image: url("../Images/1.jpg");
+                background-size: cover;
+                background-position: center;
+                background-attachment: scroll;
+            }
+
+                .body1 > hgroup {
+                    position: center
+                }
+
+            .body2 {
+                height: 320px;
+                background-color: white;
+                background-size: cover;
+                background-position: center;
+                background-attachment: fixed;
+                margin-bottom: 100px;
+            }
+        </style>
+        <div class="container-fluid body1" style="height:100%">
+            <div class="row" style="margin-top:50px;">
+                <div class="col-xs-10 text-center" style="width:900px; margin:auto; text-align:center; background-color:rgba(0, 0, 0, 0.7); color: white;  border-radius: 20px;">
+
+                    <hgroup>
+                        <h1>ИНДИВИДУАЛЬНЫЙ <span style="color: red">ДИЗАЙН</span> ИНТЕРЬЕРА ОТ ИДЕИ ДО РЕАЛИЗАЦИИ</h1>
+                        <h2 style="font-size:20px"><span style="background-color:red">&laquo;под ключ&raquo;</span> от 3 дней <span style="background-color:red">с гарантией</span> сроков в договоре</h2>
+                    </hgroup>
+
+                </div>
+            </div>
+            <!--<div style="width:20%; height:600px; position: absolute; right: 0; margin-right:5%">
+                <script>var amo_forms_params = { "id": 233842, "hash": "3f0ae47d8fbd0023ef1c44028f4cd434", "locale": "ru" };</script>
+                <script id="amoforms_script" async="async" charset="utf-8" src="https://forms.amocrm.ru/forms/assets/js/amoforms.js"></script>
+            </div>-->
+            <div class="row" style="margin-top:90px; margin-bottom:90px;">
+                <div class="col-xs-10 text-center" id="DIV_BOX text-center" style="height: 320px; margin:auto; width:1100px; padding: 0px; background-color: rgba(0, 0, 0, 0.7); color:white; margin-bottom:30px; border-radius: 20px; ">
+                    <div class='text-center' style="">
+                        <style>
+                            .whitetext {
+                                color: white !important;
+                            }
+
+                            .redtext {
+                                color: red !important;
+                            }
+                        </style>
+                        <div class="col-xs-12 text-center" style="margin:auto; margin-top:20px; max-width:760px;">
+
+
+                            <div id="DIV_IMMERBOX" class="whitetext">
+                                <h2 id="H2_5a" class="whitetext">
+                                    почему именно <b id="B_6a" class="redtext">мы</b>
+
+
+                                </h2>
+                                <div class="row">
+                                    <div id="DIV_PARAM" class="col-xs-4">
+                                        <div id="DIV_NUM" class="whitetext">
+                                            0
+                                        </div>
+                                        <div id="DIV_NUMNAME" class="redtext">
+                                            рублей
+                                        </div>
+                                        <div id="DIV_DESC" class="whitetext">
+                                            стоимость!<br> консультации, выезда и обмера квартиры.
+                                        </div>
+                                    </div>
+                                    <div id="DIV_PARAM" class="col-xs-4" style="height:220px;">
+                                        <div id="DIV_NUM" class="whitetext">
+                                            0
+                                        </div>
+                                        <div id="DIV_NUMNAME" class="redtext">
+                                            минут
+                                        </div>
+                                        <div id="DIV_DESC" class="whitetext" style="height">
+                                            вы потратите на дизайн проект.<br> Мы все сделаем за Вас!
+                                        </div>
+                                    </div>
+                                    <div id="DIV_PARAM" class="col-xs-4">
+                                        <div id="DIV_NUM" class="whitetext">
+                                            0
+                                        </div>
+                                        <div id="DIV_NUMNAME" class="redtext">
+                                            процентов
+                                        </div>
+                                        <div id="DIV_DESC" class="whitetext">
+                                            не устраивающих вас деталей. Мы все сделаем исключительно под вас
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                        <div style='width:200px; display: inline-block; color:black'>
+                            <h2 id="H2_5a" class="whitetext" style="height:auto; font-size:28px; margin-top: 20px;">
+                                Оставить заявку
+                            </h2>
+                            <h5 style="margin-bottom:10px; color:white">
+                                наш специалист позвонит вам и вышлет схему работы и первоначальные варианты дизайна
+                            </h5>
+
+                            <input type="text" class="inputsttart" id="fio1" name="fields[name_1]" placeholder="Введите имя:"> <br>
+                            <input type="text" class="inputsttart" id="phone1" name="fields[163655_1][336311]" placeholder="Введите телефон:">     <br>
+                            <input type="text" class="inputsttart" id="email1" name="fields[163657_1][336323]" placeholder="Введите email:">
+
+
+
+
+                            <div>
+                                <div style="text-align:center">
+                                    <button type="submit"
+                                            id="button_submit"
+                                            style="color: #FFFFFF;
+                                                    background-color: rgb(255, 0, 0);
+                                                    border-radius: 0px;
+                                                    margin-top:30px;"
+                                            onclick="sendCallback($('#fio1').val(), $('#phone1').val(), $('#email1').val(), 1)">
+                                        Отправить
+                                    </button>
+                                </div>
+                            </div>
+
+                            <iframe name="myIFR" id="myIFR" style="display: none"></iframe>
+
+                            <style>
+                                .inputsttart {
+                                    height: 25px;
+                                    width: 200px;
+                                    margin-top: 5px;
+                                    margin-bottom: 5px;
+                                    font-size: 14px;
+                                }
+
+                                #button_submit {
+                                    height: 40px;
+                                    width: 150px;
+                                    */
+                                    /* border-radius: 25px; */
+                                    background-color: #ed1b23;
+                                    color: #fff;
+                                    font-size: 20px;
+                                    text-shadow: 0 2px 2px rgba(0,0,0,.19);
+                                    border: 0;
+                                    -webkit-transition: .2s;
+                                    transition: .2s;
+                                }
+                            </style>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+        <div class="container body2">
+            <div class="row" style="margin-top: 40px; text-align:center">
+                <div class="col-md-8 offset-md-2">
+                    <h2><text style="color:red">Получите скидку прямо 20%</text> на своей дизайн проект, оставив заявку прямо сейчас </h2><br>
+                    <h5>*Акция действует до 01.01.2019</b></h5>
+                </div>
+            </div>
+            <div class="row" style="margin:30px;">
+                <div class="col-xs-12" style=' padding-top:45px; padding-bottom:35px; background-color:white; float: right; height:200px; margin:auto;'>
+                    <div style="box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1); width:700px; height:150px; margin:auto; padding:30px ">
+                        <div style="width:500px; height: 100px; margin:auto;">
+
+                            <input id="phone2" placeholder="Телефон" style="margin:10px; height:40px; width:200px; font-size:16px;" />
+                            <button class="amoforms__submit-button text-input js-form-changes-skip js-amoforms-font"
+                                    type="submit"
+                                    id="button_submit"
+                                    style="color: #FFF;
+                                        background-color: #ed1b23;
+                                        border-radius: 0px;
+                                        width: 260px;
+                                        margin-top: 40px;
+                                        height: 50px;
+                                        border-radius: 25px;
+                                        font: normal normal 400 normal 20px / normal 'PF Din Text Cond Pro';
+                                        margin-top: 20px;"
+                                    onclick="sendCallback('', $('#phone2').val(), '', 1)">
+                                Рассчитать стоимость
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" style="width:100%; margin: 0px;">
+            <div id="DIV_1">
+                <div id="DIV_2" class="col-lg-6 text-center" style=" float:none; margin:auto; padding:0px;">
+                    <h2 id="H2_3" style="margin:auto">
+                        как строится <b id="B_4">работа с нами?</b>
+                    </h2>
+                    <h3>Все услуги в одном месте - от проекта до мебелировки.</h3>
+                    <div id="DIV_5" style="margin:auto">
+                        <div id="DIV_6">
+                        </div>
+                        <div id="DIV_7">
+                            <div id="DIV_8">
+                                <div id="DIV_9">
+                                    <img src="../Images/s-icon-1.png" alt="" id="IMG_10" />
+                                </div>
+                                <div id="DIV_11">
+                                </div>
+                                <div id="DIV_12">
+                                    выезд
+                                </div>
+                                <div id="DIV_13">
+                                    проектировщика для бесплатного обмера вашего помещения
+                                </div>
+                            </div>
+                            <div id="DIV_8">
+                                <div id="DIV_9">
+                                    <img src="../Images/s-icon-2.png" alt="" id="IMG_16" />
+                                </div>
+                                <div id="DIV_17">
+                                </div>
+                                <div id="DIV_12">
+                                    разработка
+                                </div>
+                                <div id="DIV_13">
+                                    планировочного решения.
+                                </div>
+                            </div>
+                            <div id="DIV_8">
+                                <div id="DIV_9">
+                                    <img src="../Images/s-icon-3.png" alt="" id="IMG_22" />
+                                </div>
+                                <div id="DIV_23">
+                                </div>
+                                <div id="DIV_12">
+                                    согласование
+                                </div>
+                                <div id="DIV_13">
+                                    дизайн проекта с Вами и внесение корректировок при необходимости
+                                </div>
+                            </div>
+                            <div id="DIV_8">
+                                <div id="DIV_9">
+                                    <img src="../Images/s-icon-4.png" alt="" id="IMG_28" />
+                                </div>
+                                <div id="DIV_29">
+                                </div>
+                                <div id="DIV_12">
+                                    визуализация
+                                </div>
+                                <div id="DIV_13">
+                                    3D визуализация интрьера
+                                </div>
+                            </div>
+                            <div id="DIV_8">
+                                <div id="DIV_9">
+                                    <img src="../Images/s-icon-5.png" alt="" id="IMG_34" />
+                                </div>
+                                <div id="DIV_35">
+                                </div>
+                                <div id="DIV_12">
+                                    Чертежи
+                                </div>
+                                <div id="DIV_37" style="width:160px;">
+                                    Проектирование рабочих чертежей
+                                </div>
+                            </div>
+                            <div id="DIV_8">
+                                <div id="DIV_9">
+                                    <img src="../Images/s-icon-5.png" alt="" id="IMG_34" />
+                                </div>
+                                <div id="DIV_35">
+                                </div>
+                                <div id="DIV_12">
+                                    Мебель
+                                </div>
+                                <div id="DIV_37" style="width:160px;">
+                                    Подготовка спецификаций отделочных материалов, предметов интерьера и мебели
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 text-center" style="margin-top:40px; margin-bottom:40px;">
+                    @* <button class="btn1" style="margin:auto" data-toggle="modal" data-target="#myModal1">Начать прямо сейчас!</button>*@
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="container-fluid" style="margin-bottom: 50px;">
+            <div class="row" id="onlinecalc">
+                <div class="col-md-12" style="text-align:center;"><h2 id="H2_3" style="color:black; margin-top:40px; margin-bottom:40px; width:100%">Онлайн калькурятор</h2></div>
+            </div>
+            <div class="row">
+                <div style="width:650px; margin:auto; padding: 60px; background-color:white; border: 1px solid rgba(20,53,80,0.14);">
+
+                    <form id="amoforms_form" target="myIFR" class="amoforms-form amoforms-view-form" action="https://forms.amocrm.ru/queue/add" method="POST">
+
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <div class="calcblockdiv">
+                                    <label class="amoforms__field__name-label control-label labcalc">Тип постройки</label><br>
+                                    <select id="browsers" name="fields[265913_2]" class="inpcalc">
+                                        <option value="Квартира">Квартира</option>
+                                        <option value="Дом">Дом</option>
+                                        <option value="Офис">Офис</option>
+                                        <option value="Коммерческое помещение">Коммерческое помещение</option>
+                                    </select>
+                                </div>
+                                <div class="calcblockdiv">
+                                    <label class="amoforms__field__name-label control-label labcalc">Площадь(м<sup><small>2</small></sup>)</label><br>
+                                    <input type="text" id="ploshad" name="fields[price_2]" placeholder="200" class="js-form-changes-skip amoforms-validate_number text-input js-amoforms-font js-amoforms-color inpcalc">
+                                </div>
+                                <div class="calcblockdiv">
+                                    <label class="amoforms__field__name-label control-label labcalc">Колличество помещений</label><br>
+                                    <input type="text" id="ploshad" name="fields[price_2]" placeholder="200" class="js-form-changes-skip amoforms-validate_number text-input js-amoforms-font js-amoforms-color inpcalc">
+                                </div>
+
+                            </div>
+                            <div class="col-xs-6" style="margin-top:40px;">
+                                <div class="form-check calcblockdiv">
+                                    <input type="checkbox" class="form-check-input amoforms_placeholder js-form-changes-skip text-input js-amoforms-font js-amoforms-color" id="exampleCheck1">
+                                    <label class="form-check-label amoforms__field__name-label control-label labcalc" for="exampleCheck1">Архитектурный проект</label>
+                                </div>
+                                <div class="form-check calcblockdiv">
+                                    <input type="checkbox" class="form-check-input amoforms_placeholder js-form-changes-skip text-input js-amoforms-font js-amoforms-color" id="exampleCheck1">
+                                    <label class="form-check-label amoforms__field__name-label control-label labcalc" for="exampleCheck1">Дизайн проект</label>
+                                </div>
+                                <div class="form-check calcblockdiv">
+                                    <input type="checkbox" class="form-check-input amoforms_placeholder js-form-changes-skip text-input js-amoforms-font js-amoforms-color" id="exampleCheck1">
+                                    <label class="form-check-label amoforms__field__name-label control-label labcalc" for="exampleCheck1">Мебелировка</label>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div style="width: 300px; margin:auto">
+                            <label style="display:none; color:red; font-size: 14px;" id="alert">Введите сначала номер телефона!</label>
+                            <label class="amoforms__field__name-label labcalc">Телефон</label>
+                            <input type="text" id="telcalc" class="amoforms_placeholder js-form-changes-skip text-input js-amoforms-font js-amoforms-color  amoforms-validate_phone inpcalc" name="fields[163655_1][336311]" placeholder="+7 (495) 000-00-00">
+                        </div>
+
+
+                        <style>
+                            .inpcalc {
+                                width: 180px;
+                                height: 30px;
+                                font-size: 13px;
+                            }
+
+                            .labcalc {
+                                font-size: 15px;
+                                margin-top: 20px;
+                            }
+
+                            .calcblockdiv {
+                                padding: 10px;
+                            }
+
+                            #1:focus {
+                                outline: none;
+                            }
+                        </style>
+
+
+
+
+                        <input type="hidden" name="form_id" id="form_id" value="238411">
+                        <input type="hidden" name="hash" value="948852340527df1eec8ff4fcf5fbbc9a">
+                        <input type="hidden" name="user_origin" id="user_origin" value="" />
+
+                        <div class="amoforms__submit-button__wrap" style="text-align:center">
+                            <button class="amoforms__submit-button text-input js-form-changes-skip js-amoforms-font"
+                                    type="submit"
+                                    id="button_submit"
+                                    style="color: #FFF;
+                                        background-color: #ed1b23;
+                                        border-radius: 0px;
+                                        width: 260px;
+                                        margin-top: 40px;
+                                        height: 50px;
+                                        border-radius: 25px;
+                                        font: normal normal 400 normal 20px / normal 'PF Din Text Cond Pro';
+                                        margin-top: 20px;"
+                                    onclick="calcSum()">
+                                Рассчитать стоимость
+                            </button>
+                        </div>
+                    </form>
+                    <div style="width: 430px; margin:auto; margin-top:30px;">
+                        <p style="font: normal normal 400 normal 18px / normal 'PF Din Text Cond Pro'; text-align:center">
+                            Стоимость выбранных вами услуг: <input id="1" style="width:200px;border:none; color:forestgreen; font-size: 30px; margin:auto" />
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <script>
+            function calcSum() {
+                if ($('#telcalc').val() == '' || $('#telcalc').val() == 'Undefined') {
+                    $('#alert').show();
+                    return;
+                }
+                else {
+                    $('#alert').hide();
+
+                }
+                sendCallback('CALC', $('#telcalc').val(), '', 0)
+
+                var reg = $('#browsers').val();
+                var quan = $('#ploshad').val();
+
+                if (reg == 'Квартира') {
+                    if (quan < 65) {
+                        var coef = Math.random();
+                        $('#1').val(80 + '.000 рублей');
+                    }
+                    if (quan > 65 && quan < 80) {
+                        var coef = Math.random();
+                        $('#1').val(110 + '.000 рублей');
+                    }
+                    if (quan > 80 && quan < 110) {
+                        var coef = Math.random();
+                        $('#1').val(130 + '.000 рублей');
+                    }
+                    if (quan > 110 && quan < 150) {
+                        var coef = Math.random();
+                        $('#1').val(170 + '.000 рублей');
+                    }
+                    if (quan > 150) {
+                        var coef = Math.random();
+                        $('#1').val(220 + '.000 рублей');
+                    }
+                }
+                if (reg == 'Дом') {
+                    if (quan < 65) {
+                        var coef = Math.random();
+                        $('#1').val(70 + '.000 рублей');
+                    }
+                    if (quan > 65 && quan < 75) {
+                        var coef = Math.random();
+                        $('#1').val(80 + '.000 рублей');
+                    }
+                    if (quan > 75 && quan < 90) {
+                        var coef = Math.random();
+                        $('#1').val(90 + '.000 рублей');
+                    }
+                    if (quan > 90 && quan < 110) {
+                        var coef = Math.random();
+                        $('#1').val(100 + '.000 рублей');
+                    }
+                    if (quan > 110 && quan < 150) {
+                        var coef = Math.random();
+                        $('#1').val(130 + '.000 рублей');
+                    }
+                    if (quan > 150) {
+                        var coef = Math.random();
+                        $('#1').val(140 + '.000 рублей');
+                    }
+                }
+                if (reg == 'офис') {
+                    if (quan < 65) {
+                        var coef = Math.random();
+                        $('#1').val(65 + '.000 рублей');
+                    }
+                    if (quan > 65 && quan < 75) {
+                        var coef = Math.random();
+                        $('#1').val(70 + '.000 рублей');
+                    }
+                    if (quan > 75 && quan < 90) {
+                        var coef = Math.random();
+                        $('#1').val(80 + '.000 рублей');
+                    }
+                    if (quan > 90 && quan < 110) {
+                        var coef = Math.random();
+                        $('#1').val(95 + '.000 рублей');
+                    }
+                    if (quan > 110 && quan < 150) {
+                        var coef = Math.random();
+                        $('#1').val(110 + '.000 рублей');
+                    }
+                    if (quan > 150) {
+                        var coef = Math.random();
+                        $('#1').val(120 + '.000 рублей');
+                    }
+                }
+                if (reg == 'Коммерческое помещение') {
+                    if (quan < 65) {
+                        var coef = Math.random();
+                        $('#1').val(65 + '.000 рублей');
+                    }
+                    if (quan > 65 && quan < 75) {
+                        var coef = Math.random();
+                        $('#1').val(70 + '.000 рублей');
+                    }
+                    if (quan > 75 && quan < 90) {
+                        var coef = Math.random();
+                        $('#1').val(80 + '.000 рублей');
+                    }
+                    if (quan > 90 && quan < 110) {
+                        var coef = Math.random();
+                        $('#1').val(95 + '.000 рублей');
+                    }
+                    if (quan > 110 && quan < 150) {
+                        var coef = Math.random();
+                        $('#1').val(110 + '.000 рублей');
+                    }
+                    if (quan > 150) {
+                        var coef = Math.random();
+                        $('#1').val(120 + '.000 рублей');
+                    }
+                }
+            }
+        </script>
+        <style>
+            .grid-item {
+                display: inline-block;
+                -webkit-transition: .3s ease-in-out;
+                transition: .3s ease-in-out;
+                height: auto;
+            }
+
+            .my-col .img-responsive {
+                display: inline-block;
+            }
+
+            .grid-item:hover {
+                opacity: 0.2;
+            }
+
+            #1 {
+                display: none;
+                border: 1px solid #000;
+                height: 30px;
+                width: 290px;
+                margin-left: 10px;
+            }
+
+            a:hover + #1 {
+                display: block;
+            }
+
+            .nopadding {
+                padding: 0 !important;
+                margin: 0 !important;
+            }
+        </style>
+        <div class="container-fluid" id="portfolio" style="background-image: url(../Images/portfolioback.jpg); background-repeat: no-repeat; background-size: cover">
+            <div class="row">
+                <div class="col-md-12" style="text-align:center;"><h2 id="H2_3" style="color:black; margin-top:40px; margin-bottom:40px; width:100%">ПРИМЕРЫ НАШИХ РАБОТ</h2></div>
+            </div>
+
+            <!--<div class="row" style="">
+                    <div class="col-md-12" style="align-content:center; text-align:center; justify-content: center;  position: relative;">
+                        <div id="1">text</div>
+                            <img class="grid-item" src="http://unsplash.it/400/300?image=1" />
+                            <img class="grid-item" src="http://unsplash.it/400/300?image=20" />
+                            <img class="grid-item" src="http://unsplash.it/400/300?image=119" />
+                            <img class="grid-item" src="http://unsplash.it/400/300?image=42" />
+                            <img class="grid-item" src="http://unsplash.it/400/300?image=48" />
+                            <img class="grid-item" src="http://unsplash.it/400/300?image=60" />
+                            <img class="grid-item" src="http://unsplash.it/400/300?image=201" />
+                            <img class="grid-item" src="http://unsplash.it/400/300?image=7" />
+                        </div>
+                    </div>
+                </div>
+            </div>-->
+
+
+            <div class="container-fluid" style="margin-bottom:60px; color:black;">
+                <div class="row">
+                    <div class="col-md-10 offset-lg-1 text-center" style="margin:auto">
+                        <div class="col-xs-3 nopadding text-center hvrbox hvrbox_background" style="background-image: url(../Images/2.jpg)" ;>
+                            <div class="hvrbox-layer_top">
+                                <div class="hvrbox-text"><b>Заказчик:</b><p>Сергей Юревич Луконин</p><b>Адрес:</b><p>Ул. Барболина, д.8, кв.29</p><p><b>Предмет договара:<p></b>Перепланировка квартиры</p></p></div>
+                            </div>
+                        </div>
+                        <div class="col-xs-3 nopadding text-center hvrbox hvrbox_background" style="background-image: url(../Images/4.jpg)" ;>
+                            <div class="hvrbox-layer_top">
+                                <div class="hvrbox-text"><b>Заказчик:</b><p>Андреев Дмитрий Викторович</p><b>Адрес:</b><p>М Набережная 17/22 кв. 5</p><p><b>Предмет договара:<p></b>Перепланировка квартиры, <br>Разработка дизайн проекта</p></p></div>
+                            </div>
+                        </div>
+                        <div class="col-xs-3 nopadding text-center hvrbox hvrbox_background" style="background-image: url(../Images/5.jpg)" ;>
+                            <div class="hvrbox-layer_top">
+                                <div class="hvrbox-text"><b>Заказчик:</b><p>Степанова Юлия Георгиевна</p><b>Адрес:</b><p>Кутузовский проспект, д. 43 кв. 45</p><p><b>Предмет договара:<p></b>Перепланировка квартиры</p></p></div>
+                            </div>
+                        </div>
+                        <div class="col-xs-3 nopadding text-center hvrbox hvrbox_background" style="background-image: url(../Images/6.jpg)" ;>
+                            <div class="hvrbox-layer_top">
+                                <div class="hvrbox-text"><b>Заказчик:</b><p>Чипсвнова Елана Николаевна</p><b>Адрес:</b><p>г. Химки, улица Молодежная, д. 64, кв. 213 </p><p><b>Предмет договара:<p></b>Перепланировка квартиры, <br>Разработка дизайн проекта</p></p></div>
+                            </div>
+                        </div>
+                        <div class="col-xs-3 nopadding text-center hvrbox hvrbox_background" style="background-image: url(../Images/8.jpg)" ;>
+                            <div class="hvrbox-layer_top">
+                                <div class="hvrbox-text"><b>Заказчик:</b><p>Петросян Армен Артемович</p><b>Адрес:</b><p>ул. Большой Златоустинский переулок, д. 6/6, кв. 121</p><p><b>Предмет договара:<p></b>Перепланировка квартиры, <br>Разработка дизайн проекта</p></p></div>
+                            </div>
+                        </div>
+                        <div class="col-xs-3 nopadding text-center hvrbox hvrbox_background" style="background-image: url(../Images/7.jpg)" ;>
+                            <div class="hvrbox-layer_top">
+                                <div class="hvrbox-text"><b>Заказчик:</b><p>Степукова Ольга Юлиевна</p><b>Адрес:</b><p>ул. Хлобистикова д.14к1 кв. 1</p><p><b>Предмет договара:<p></b>Перепланировка квартиры</p></p></div>
+                            </div>
+                        </div>
+                        <div class="col-xs-3 nopadding text-center hvrbox hvrbox_background" style="background-image: url(../Images/9.jpg)" ;>
+                            <div class="hvrbox-layer_top">
+                                <div class="hvrbox-text"><b>Заказчик:</b><p>Благонравов Михаил Сергеевич</p><b>Адрес:</b><p>ул. Комсомольская, д.16к1, кв. 66</p><p><b>Предмет договара:<p></b>Перепланировка квартиры, <br>Разработка дизайн проекта</p></p></div>
+                            </div>
+                        </div>
+                        <div class="col-xs-3 nopadding text-center hvrbox hvrbox_background" style="background-image: url(../Images/3.jpg)" ;>
+                            <div class="hvrbox-layer_top">
+                                <div class="hvrbox-text"><b>Заказчик:</b><p>Петров Виктор Антонович</p><b>Адрес:</b><p>Б. Левшинский переулок д. 9, кв. 51</p><p><b>Предмет договара:<p></b>Перепланировка квартиры</p></p></div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <style>
+            .hvrbox,
+            .hvrbox * {
+                box-sizing: border-box;
+            }
+
+            .hvrbox {
+                position: relative;
+                display: inline-block;
+                overflow: hidden;
+                max-width: 100%;
+                height: auto;
+            }
+
+                .hvrbox img {
+                    max-width: 100%;
+                }
+
+                .hvrbox .hvrbox-layer_bottom {
+                    display: block;
+                }
+
+                .hvrbox .hvrbox-layer_top {
+                    opacity: 0;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: rgba(0, 0, 0, 0.6);
+                    color: #fff;
+                    padding: 38.5%;
+                    -moz-transition: all 0.4s ease-in-out 0s;
+                    -webkit-transition: all 0.4s ease-in-out 0s;
+                    -ms-transition: all 0.4s ease-in-out 0s;
+                    transition: all 0.4s ease-in-out 0s;
+                }
+
+                .hvrbox:hover .hvrbox-layer_top,
+                .hvrbox.active .hvrbox-layer_top {
+                    opacity: 1;
+                }
+
+            .hvrbox_background:hover {
+                background-image: url(http://unsplash.it/400/300?image=20);
+                backface-visibility: unset
+            }
+
+            .hvrbox .hvrbox-text {
+                text-align: center;
+                font-size: 0.9vw;
+                width: 500px;
+                display: inline-block;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                -moz-transform: translate(-50%, -50%);
+                -webkit-transform: translate(-50%, -50%);
+                -ms-transform: translate(-50%, -50%);
+                transform: translate(-50%, -50%);
+            }
+
+            .hvrbox .hvrbox-text_mobile {
+                font-size: 15px;
+                border-top: 1px solid rgb(179, 179, 179); /* for old browsers */
+                border-top: 1px solid rgba(179, 179, 179, 0.7);
+                margin-top: 5px;
+                padding-top: 2px;
+                display: none;
+            }
+
+            .hvrbox.active .hvrbox-text_mobile {
+                display: block;
+            }
+
+            .hvrbox_background {
+                background-size: 100% auto;
+                background-repeat: no-repeat;
+            }
+        </style>
+
+        <div class="container-fluid" style="margin-top:60px;" id="inf">
+            <div class="row">
+                <div id="DIV_BOX text-center" class="col-xs-8 text-center" style="width:1000px; margin:auto ">
+                    <div id="DIV_IMMERBOX">
+                        <div id="DIV_IMAGE">
+                            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA6IAAAABCAYAAADEmBNaAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6NUU3QkI1ODg1NDMxMTFFM0FDRjVGNERCNzAzM0EyOTUiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6NUU3QkI1ODk1NDMxMTFFM0FDRjVGNERCNzAzM0EyOTUiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo1RTdCQjU4NjU0MzExMUUzQUNGNUY0REI3MDMzQTI5NSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo1RTdCQjU4NzU0MzExMUUzQUNGNUY0REI3MDMzQTI5NSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Plyzhz8AAABfSURBVHja7JNRCsAwDEIN7P5Xzm7QpU4LBd+fVhtC6QOgsKYEvsqbdJy6iNyfbInvcO2g7KreeZphfLYTQgghhLvpTZ/p9CDXBzor7eq6z1Q7KeY59Nd8h8f+C7wCDADPFDIG2IIiUwAAAABJRU5ErkJggg==" id="IMG_4a" alt='' />
+                        </div>
+                        <h2 id="H2_5a">
+                            наши <b id="B_6a">Преимущества</b>
+                        </h2>
+                        <div id="DIV_PARAM">
+                            <div id="DIV_NUM">
+                                0
+                            </div>
+                            <div id="DIV_NUMNAME">
+                                рублей
+                            </div>
+                            <div id="DIV_DESC">
+                                составляет стоимость консультации, выезда и обмера квартиры
+                            </div>
+                        </div>
+                        <div id="DIV_PARAM">
+                            <div id="DIV_NUM">
+                                7
+                            </div>
+                            <div id="DIV_NUMNAME">
+                                дней
+                            </div>
+                            <div id="DIV_DESC">
+                                общее время от обмера квартиры до сдачи проекта Вам лично в руки!
+                            </div>
+                        </div>
+                        <div id="DIV_PARAM">
+                            <div id="DIV_NUM">
+                                447
+                            </div>
+                            <div id="DIV_NUMNAME">
+                                проектов
+                            </div>
+                            <div id="DIV_DESC">
+                                перепланировки и 0 недовольных клиентов
+                            </div>
+                        </div>
+                        <div id="DIV_PARAM">
+                            <div id="DIV_NUM">
+                                100%
+                            </div>
+                            <div id="DIV_NUMNAME">
+                                гарантия
+                            </div>
+                            <div id="DIV_DESC">
+                                соответствие всем вашим требованиям!
+                            </div>
+
+                        </div>
+                        <div id="DIV_IMAGE1" style="margin-bottom:100px;">
+                            <img style="margin-top:80px;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA6IAAAABCAYAAADEmBNaAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6NUU3QkI1ODg1NDMxMTFFM0FDRjVGNERCNzAzM0EyOTUiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6NUU3QkI1ODk1NDMxMTFFM0FDRjVGNERCNzAzM0EyOTUiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo1RTdCQjU4NjU0MzExMUUzQUNGNUY0REI3MDMzQTI5NSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo1RTdCQjU4NzU0MzExMUUzQUNGNUY0REI3MDMzQTI5NSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Plyzhz8AAABfSURBVHja7JNRCsAwDEIN7P5Xzm7QpU4LBd+fVhtC6QOgsKYEvsqbdJy6iNyfbInvcO2g7KreeZphfLYTQgghhLvpTZ/p9CDXBzor7eq6z1Q7KeY59Nd8h8f+C7wCDADPFDIG2IIiUwAAAABJRU5ErkJggg==" id="IMG_4a" alt='' />
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+        <div class="container-fluid" style=" margin-bottom:70px; background-image: url('../Images/comback.jpg'); padding-bottom:30px">
+
+
+            <div class="row" style="width:100%">
+
+                <h2 id="H2_3" style="color: black; margin-top: 40px; margin-bottom: 10px; width: 100%">Наша команда</h2>
+            </div>
+
+            <div class="col-sm-6  text-center">
+                <div style="box-shadow: 0px 0px 30px 0px rgba(52, 52, 52, 0.15); display:inline-block; padding: 1vw; padding-top: 30px; padding-bottom:40px; background-color:white; width:80%">
+                    <h2 id="" style="color: black; margin-top: 40px; margin-bottom: 30px;  width:80%; margin: auto; font: normal normal 400 normal 36px / normal 'PF Din Text Cond Pro'; text-transform: uppercase;">Дизайнеры и проектировщики</h2>
+                    <img src="../Images/3333.jpg" width="95%" height="auto" style="margin-top:15px" />
+                </div>
+            </div>
+            <div class="col-sm-6  text-center">
+                <div style="box-shadow: 0px 0px 30px 0px rgba(52, 52, 52, 0.15); display:inline-block; padding: 1vw; padding-top: 30px; padding-bottom:40px; background-color:white; width:80%">
+                    <h2 id="" style="color: black; margin-top: 40px; margin-bottom: 10px;   margin: auto; font: normal normal 400 normal 36px / normal 'PF Din Text Cond Pro'; text-transform: uppercase; ">Коммерческий отдел(у заказчика)</h2>
+                    <img src="../Images/sogl.jpg" width="95%" height="auto" style="margin-top:15px" />
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="container-fluid" id="contacts" style="margin-top: 100px;">
+
+            <div class="row">
+                <div class="col-xs-3 text-center" style="margin: auto">
+
+                    <h2 id="H2_3" style="color: black; margin-top: 40px; margin-bottom: 40px; width: 100%">Контакты</h2>
+                </div>
+            </div>
+            <div class="row" style="height:450px; margin-bottom:40px;">
+                <div class="col-xs-10 text-center" style="margin: auto">
+                    <div class="1">
+                        <div class="col-xs-9">
+                            <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A4858c93b7314915da439d4cdc470719f88eef1c117778db5a6e643912fee25b5&amp;width=1145&amp;height=450&amp;lang=ru_RU&amp;scroll=true"></script>
+                        </div>
+                        <div class="col-xs-3 formcall" style="font: normal normal 400 normal 16px/normal 'PF Din Text Cond Pro'; text-align:left">
+                            <div class="row" style="margin:auto; width:150px">
+                                @*<img src="../Images/9.png" width="auto" height="70px" style="margin:auto;" />*@
+                                <center><h2><b>PANDA INTERIOR</b></h2></center>
+                            </div><br />
+                            <div class="row">
+                                <label class="control-label col-xs-4">Адрес</label>
+                                <div class="col-xs-8 nopadding">Россия, Московская область, Химки, Куркинское шоссе, с2</div>
+                            </div>
+
+                            <div class="row">
+                                <label class="control-label col-xs-4">Телефон</label>
+                                <div class="col-xs-8 nopadding"><a href="tel:+79260455805">8 (926) 045-58-05</a></div>
+                            </div>
+                            <div class="row">
+                                <label class="control-label col-xs-4">Почта</label>
+                                <div class="col-xs-4 nopadding">info@PANDA INTERIOR.ru</div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <!--<div class="col-xs-12" style="background-color: black; height: 50px; text-align: center;">
+                    <img src="../Images/favicon.png" alt="site identity" class="logo" style="height:50px; width: auto; float: left" />
+                    <text style="color: white; margin: auto; font: normal normal 400 normal 16px/normal 'PF Din Text Cond Pro'; line-height: 50px; ; float: left">ООО "МосПроектСтрой" ул. Бутырский Вал, д. 10, Москва, Россия, 125047<br></text>
+                    <text style="color: white; text-align: center; font: normal normal 400 normal 16px/normal 'PF Din Text Cond Pro'; line-height: 50px; ;">8(495)005 29 13</text>
+                    <text style="color: white; text-align: right; float: right; font: normal normal 400 normal 16px/normal 'PF Din Text Cond Pro'; line-height: 50px;">© Все права защищены 2009г.</text>
+                </div>-->
+                <div class="col-xs-12" style="background-color: black; height: 50px; text-align: center;">
+                    <img src="../Images/favicon.png" alt="site identity" class="logo" style="height:50px; width: auto; float: left" />
+                    <text style="color: white; margin: auto; font: normal normal 400 normal 12px/normal 'PF Din Text Cond Pro'; height:50px; float: left">© 2008-2017<br> ООО "Archigen" <br>Все права защищены <br></text>
+                    <text style="color: white; text-align: center; font: normal normal 400 normal 16px/normal 'PF Din Text Cond Pro'; line-height: 50px;">8 (926) 045-58-05</text>
+                    <text style="color: white; text-align: right; float: right; font: normal normal 400 normal 16px/normal 'PF Din Text Cond Pro'; line-height: 50px;">г.Москва, ул Нагорная, дом 24 корпус 7</text>
+                </div>
+            </div>
+        </div>
+
+
+
+        <!-- Modal -->
+        <div id="myModal1" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content" style="background-color: transparent">
+                    <style>
+                        .modal-content {
+                            -webkit-box-shadow: 0 5px 15px rgba(0,0,0,0);
+                            -moz-box-shadow: 0 5px 15px rgba(0,0,0,0);
+                            -o-box-shadow: 0 5px 15px rgba(0,0,0,0);
+                            box-shadow: 0 5px 15px rgba(0,0,0,0);
+                            border: 0px;
+                            top: 200px;
+                        }
+                    </style>
+                    <div>
+                        <div style="height:450px; margin:auto; width:500px;">
+                            <script>var amo_forms_params = { "id": 228835, "hash": "9f98e41091246387b6bb7cc65add03b2", "locale": "ru" };</script>
+                            <script id="amoforms_script" charset="utf-8" src="https://forms.amocrm.ru/forms/assets/js/amoforms.js"></script>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+        <style>
+            #DIV_BOX {
+                box-sizing: border-box;
+                color: rgb(71, 71, 71);
+                height: 428px;
+                min-height: 1px;
+                text-align: center;
+                text-decoration: none solid rgb(71, 71, 71);
+                text-size-adjust: 100%;
+                width: 1903px;
+                column-rule-color: rgb(71, 71, 71);
+                perspective-origin: 951.5px 214px;
+                transform-origin: 951.5px 214px;
+                caret-color: rgb(71, 71, 71);
+                border: 0px none rgb(71, 71, 71);
+                font: normal normal 400 normal 16px / normal "PF Din Text Cond Pro";
+                outline: rgb(71, 71, 71) none 0px;
+                overflow: hidden;
+                padding: 0px 0px 80px;
+            }
+            /*#DIV_1*/
+
+            #DIV_INNERBOX {
+                box-sizing: border-box;
+                color: rgb(71, 71, 71);
+                height: 348px;
+                min-height: 1px;
+                text-align: center;
+                text-decoration: none solid rgb(71, 71, 71);
+                text-size-adjust: 100%;
+                width: 1000px;
+                column-rule-color: rgb(71, 71, 71);
+                perspective-origin: 500px 174px;
+                transform-origin: 500px 174px;
+                caret-color: rgb(71, 71, 71);
+                border: 0px none rgb(71, 71, 71);
+                font: normal normal 400 normal 16px / normal "PF Din Text Cond Pro";
+                margin: 0px 451.5px;
+                outline: rgb(71, 71, 71) none 0px;
+                overflow: hidden;
+            }
+            /*#DIV_2*/
+
+            #DIV_IMAGE {
+                box-sizing: border-box;
+                color: rgb(71, 71, 71);
+                height: 89px;
+                text-align: center;
+                text-decoration: none solid rgb(71, 71, 71);
+                text-size-adjust: 100%;
+                width: 100%;
+                column-rule-color: rgb(71, 71, 71);
+                perspective-origin: 500px 44.5px;
+                transform-origin: 500px 44.5px;
+                caret-color: rgb(71, 71, 71);
+                border: 0px none rgb(71, 71, 71);
+                font: normal normal 400 normal 16px / normal "PF Din Text Cond Pro";
+                outline: rgb(71, 71, 71) none 0px;
+                padding: 0px 0px 70px;
+            }
+            /*#DIV_3*/
+
+            #IMG_4a {
+                box-sizing: border-box;
+                color: rgb(71, 71, 71);
+                height: 1px;
+                text-align: center;
+                text-decoration: none solid rgb(71, 71, 71);
+                text-size-adjust: 100%;
+                width: 930px;
+                column-rule-color: rgb(71, 71, 71);
+                perspective-origin: 465px 0.5px;
+                transform-origin: 465px 0.5px;
+                caret-color: rgb(71, 71, 71);
+                border: 0px none rgb(71, 71, 71);
+                font: normal normal 400 normal 16px / normal "PF Din Text Cond Pro";
+                outline: rgb(71, 71, 71) none 0px;
+            }
+            /*#IMG_4*/
+
+            #H2_5a {
+                box-sizing: border-box;
+                color: rgb(71, 71, 71);
+                height: 45px;
+                text-align: center;
+                text-decoration: none solid rgb(71, 71, 71);
+                text-size-adjust: 100%;
+                text-transform: uppercase;
+                width: 100%;
+                column-rule-color: rgb(71, 71, 71);
+                perspective-origin: 500px 22.5px;
+                transform-origin: 500px 22.5px;
+                caret-color: rgb(71, 71, 71);
+                border: 0px none rgb(71, 71, 71);
+                font: normal normal 400 normal 36px / normal "PF Din Text Cond Pro";
+                margin: 0px;
+                outline: rgb(71, 71, 71) none 0px;
+            }
+            /*#H2_5*/
+
+            #B_6a {
+                box-sizing: border-box;
+                color: rgb(71, 71, 71);
+                text-align: center;
+                text-decoration: none solid rgb(71, 71, 71);
+                text-size-adjust: 100%;
+                text-transform: uppercase;
+                column-rule-color: rgb(71, 71, 71);
+                caret-color: rgb(71, 71, 71);
+                border: 0px none rgb(71, 71, 71);
+                font: normal normal 700 normal 36px / normal "PF Din Text Cond Pro";
+                outline: rgb(71, 71, 71) none 0px;
+            }
+            /*#B_6*/
+
+            #DIV_PARAM {
+                box-sizing: border-box;
+                color: rgb(71, 71, 71);
+                float: left;
+                height: 194px;
+                min-height: 1px;
+                text-align: center;
+                text-decoration: none solid rgb(71, 71, 71);
+                text-size-adjust: 100%;
+                width: 180px;
+                column-rule-color: rgb(71, 71, 71);
+                perspective-origin: 90px 97px;
+                transform-origin: 90px 97px;
+                caret-color: rgb(71, 71, 71);
+                border: 0px none rgb(71, 71, 71);
+                font: normal normal 400 normal 16px / normal "PF Din Text Cond Pro";
+                margin: 20px 0px 0px 46px;
+                outline: rgb(71, 71, 71) none 0px;
+                overflow: hidden;
+            }
+            /*#DIV_7, #DIV_11, #DIV_19*/
+
+            #DIV_NUM {
+                box-sizing: border-box;
+                color: rgb(71, 71, 71);
+                height: 87px;
+                text-align: center;
+                text-decoration: none solid rgb(71, 71, 71);
+                text-size-adjust: 100%;
+                width: 180px;
+                column-rule-color: rgb(71, 71, 71);
+                perspective-origin: 90px 43.5px;
+                transform-origin: 90px 43.5px;
+                caret-color: rgb(71, 71, 71);
+                border: 0px none rgb(71, 71, 71);
+                font: normal normal 700 normal 70px / normal "PF Din Text Cond Pro";
+                outline: rgb(71, 71, 71) none 0px;
+            }
+            /*#DIV_8, #DIV_12, #DIV_16, #DIV_20*/
+
+            #DIV_NUMNAME {
+                box-sizing: border-box;
+                color: rgb(71, 71, 71);
+                height: 30px;
+                text-align: center;
+                text-decoration: none solid rgb(71, 71, 71);
+                text-size-adjust: 100%;
+                text-transform: uppercase;
+                width: 180px;
+                column-rule-color: rgb(71, 71, 71);
+                perspective-origin: 90px 15px;
+                transform-origin: 90px 15px;
+                caret-color: rgb(71, 71, 71);
+                border: 0px none rgb(71, 71, 71);
+                font: normal normal 700 normal 24px / normal "PF Din Text Cond Pro";
+                margin: 5px 0px 15px;
+                outline: rgb(71, 71, 71) none 0px;
+            }
+            /*#DIV_9, #DIV_13, #DIV_17, #DIV_21*/
+
+            #DIV_DESC {
+                box-sizing: border-box;
+                color: rgb(71, 71, 71);
+                height: 57px;
+                text-align: center;
+                text-decoration: none solid rgb(71, 71, 71);
+                text-size-adjust: 100%;
+                width: 180px;
+                column-rule-color: rgb(71, 71, 71);
+                perspective-origin: 90px 28.5px;
+                transform-origin: 90px 28.5px;
+                caret-color: rgb(71, 71, 71);
+                border: 0px none rgb(71, 71, 71);
+                font: normal normal 400 normal 16px / normal "PF Din Text Cond Pro";
+                outline: rgb(71, 71, 71) none 0px;
+            }
+            /*#DIV_10, #DIV_14, #DIV_22*/
+        </style>
+
+
+
+
+
+
+</body>
+</html>
+
+
+
+
+<style>
+    #menu {
+        display: inline-block;
+    }
+
+    .image1 {
+        overflow: hidden;
+        float: left;
+        height: 300px;
+        width: 400px;
+    }
+
+    #imgdiv {
+        height: 300px;
+        background-color: #ededed;
+        overflow: hidden;
+    }
+
+    .image1 img {
+        top: -200%;
+        -ms-filter: progid:DXImageTransform.Microsoft.Blur(pixelRadius=50);
+        max-height: auto;
+        /*max-width: 250px;
+        max-height: 140px;*/
+        -ms-filter: blur(3px);
+        -webkit-transition: .3s ease-in-out;
+        transition: .3s ease-in-out;
+        filter: blur(3px);
+        -webkit-filter: blur(3px);
+        -moz-filter: blur(3px);
+        -o-filter: blur(3px);
+        -ms-filter: blur(3px);
+        filter: url(#blur);
+    }
+
+        .image1 img:hover {
+            /*opacity: 0.4;*/
+            -webkit-filter: blur();
+            -ms-filter: blur(0);
+        }
+
+    .image1 span {
+        display: inline-block;
+        /*position: absolute;*/
+        width: 100%;
+        top: 30px;
+        left: 0px;
+        /* Оформление текста */
+        color: #FFF;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 20px;
+        /* Фон */
+        background-color: rgba(0,0,0,.4);
+        padding: 10px 30px;
+    }
+
+    .image1 {
+        float: left;
+        display: inline-block;
+        position: relative;
+    }
+
+    .image1closed span {
+        display: inline-block;
+        /*position: absolute;*/
+        width: 100%;
+        top: 30px;
+        left: 0px;
+        /* Оформление текста */
+        color: #FFF;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 20px;
+        /* Фон */
+        background-color: rgba(189, 189, 189, 0.51);
+        padding: 10px 30px;
+    }
+
+    .image1closed img:hover {
+        /*opacity: 0.4;*/
+        -webkit-filter: brightness(2);
+        filter: brightness(2);
+    }
+
+    .overlay {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 140px;
+        width: 100%;
+        opacity: 0;
+        transition: .5s ease;
+        background-color: white;
+    }
+
+    .image1closed:hover .overlay {
+        opacity: 0.8;
+    }
+
+    .text {
+        color: gray;
+        font-size: 20px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+    }
+</style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<style>
+
+    .inputcall {
+        background: 0 0;
+        border: none;
+        font-family: sans-serif;
+        font-size: 15px;
+        width: 100%;
+        border-bottom: 1px solid #989898;
+        margin-bottom: 25px;
+    }
+
+    .formcall {
+        box-shadow: 0px 0px 30px 0px rgba(52, 52, 52, 0.15);
+    }
+
+    .btn1 {
+        height: 50px;
+        border-radius: 25px;
+        background-color: #ed1b23;
+        padding: 0 45px;
+        color: #fff;
+        font-size: 20px;
+        text-shadow: 0 2px 2px rgba(0,0,0,.19);
+        border: 0;
+        -webkit-transition: .2s;
+        transition: .2s;
+    }
+</style>
+
+
+
+<script>
+    
+    jQuery(function ($) {
+        $(".phone").mask("+7(999) 999-9999");
+
+    });
+</script>
+
+
+
+
+
+
+<style>
+    #DIV_1 {
+        background-position: 50% 50%;
+        box-sizing: border-box;
+        color: rgb(255, 255, 255);
+        height: 637px;
+        min-height: 1px;
+        text-decoration: none solid rgb(255, 255, 255);
+        text-size-adjust: 100%;
+        width: 1903px;
+        column-rule-color: rgb(255, 255, 255);
+        perspective-origin: 951.5px 293.5px;
+        transform-origin: 951.5px 293.5px;
+        caret-color: rgb(255, 255, 255);
+        background: rgba(0, 0, 0, 0.5) url("../Images/81857025.png") repeat scroll 50% 50% / cover padding-box border-box;
+        border: 0px none rgb(255, 255, 255);
+        font: normal normal 400 normal 16px / normal "PF Din Text Cond Pro";
+        outline: rgb(255, 255, 255) none 0px;
+        overflow: hidden;
+        padding: 70px 0px 80px;
+    }
+    /*#DIV_1*/
+
+    #DIV_2 {
+        box-sizing: border-box;
+        color: rgb(255, 255, 255);
+        height: 437px;
+        min-height: 1px;
+        text-decoration: none solid rgb(255, 255, 255);
+        text-size-adjust: 100%;
+        min-width: 1110px;
+        column-rule-color: rgb(255, 255, 255);
+        perspective-origin: 500px 218.5px;
+        transform-origin: 500px 218.5px;
+        caret-color: rgb(255, 255, 255);
+        border: 0px none rgb(255, 255, 255);
+        font: normal normal 400 normal 16px / normal "PF Din Text Cond Pro";
+        outline: rgb(255, 255, 255) none 0px;
+        overflow: hidden;
+    }
+    /*#DIV_2*/
+
+    #H2_3 {
+        margin:auto;
+        box-sizing: border-box;
+        color: rgb(255, 255, 255);
+        height: 45px;
+        text-align: center;
+        text-decoration: none solid rgb(255, 255, 255);
+        text-size-adjust: 100%;
+        text-transform: uppercase;
+        width: 1000px;
+        column-rule-color: rgb(255, 255, 255);
+        perspective-origin: 500px 22.5px;
+        transform-origin: 500px 22.5px;
+        caret-color: rgb(255, 255, 255);
+        border: 0px none rgb(255, 255, 255);
+        font: normal normal 400 normal 36px / normal "PF Din Text Cond Pro";
+        margin: 0px;
+        outline: rgb(255, 255, 255) none 0px;
+    }
+    /*#H2_3*/
+
+    #B_4 {
+        box-sizing: border-box;
+        color: rgb(255, 255, 255);
+        text-align: center;
+        text-decoration: none solid rgb(255, 255, 255);
+        text-size-adjust: 100%;
+        text-transform: uppercase;
+        column-rule-color: rgb(255, 255, 255);
+        caret-color: rgb(255, 255, 255);
+        border: 0px none rgb(255, 255, 255);
+        font: normal normal 700 normal 36px / normal "PF Din Text Cond Pro";
+        outline: rgb(255, 255, 255) none 0px;
+    }
+    /*#B_4*/
+
+    #DIV_5 {
+        box-sizing: border-box;
+        color: rgb(71, 71, 71);
+        height: 352px;
+        min-height: 343px;
+        text-decoration: none solid rgb(71, 71, 71);
+        text-size-adjust: 100%;
+        width: 1200px;
+        column-rule-color: rgb(71, 71, 71);
+        perspective-origin: 500px 176px;
+        transform-origin: 500px 176px;
+        caret-color: rgb(71, 71, 71);
+        background: rgb(255, 255, 255) none repeat scroll 0% 0% / auto padding-box border-box;
+        border: 0px none rgb(71, 71, 71);
+        font: normal normal 400 normal 16px / normal "PF Din Text Cond Pro";
+        margin: 40px 0px 0px;
+        outline: rgb(71, 71, 71) none 0px;
+        overflow: hidden;
+        padding: 0px 0px 40px;
+    }
+    /*#DIV_5*/
+
+    #DIV_6 {
+        box-sizing: border-box;
+        color: rgb(71, 71, 71);
+        height: 3px;
+        text-decoration: none solid rgb(71, 71, 71);
+        text-size-adjust: 100%;
+        width: 870px;
+        column-rule-color: rgb(71, 71, 71);
+        perspective-origin: 385px 1.5px;
+        transform-origin: 385px 1.5px;
+        caret-color: rgb(71, 71, 71);
+        border-top: 0px none rgb(71, 71, 71);
+        border-right: 0px none rgb(71, 71, 71);
+        border-bottom: 3px solid rgb(71, 71, 71);
+        border-left: 0px none rgb(71, 71, 71);
+        font: normal normal 400 normal 16px / normal "PF Din Text Cond Pro";
+        margin: 140px 115px 0px;
+        outline: rgb(71, 71, 71) none 0px;
+    }
+    /*#DIV_6*/
+
+    #DIV_7 {
+        bottom: 0px;
+        box-sizing: border-box;
+        color: rgb(71, 71, 71);
+        left: 0px;
+        position: relative;
+        right: 0px;
+        text-decoration: none solid rgb(71, 71, 71);
+        text-size-adjust: 100%;
+        top: 0px;
+        width: 1200px;
+        z-index: 2;
+        column-rule-color: rgb(71, 71, 71);
+        perspective-origin: 500px 0px;
+        transform-origin: 500px 0px;
+        caret-color: rgb(71, 71, 71);
+        border: 0px none rgb(71, 71, 71);
+        font: normal normal 400 normal 16px / normal "PF Din Text Cond Pro";
+        margin: -121px 0px 0px;
+        outline: rgb(71, 71, 71) none 0px;
+    }
+    /*#DIV_7*/
+
+    #DIV_8 {
+        box-sizing: border-box;
+        color: rgb(71, 71, 71);
+        float: left;
+        height: 265px;
+        min-height: 1px;
+        text-align: center;
+        text-decoration: none solid rgb(71, 71, 71);
+        text-size-adjust: 100%;
+        width: 172px;
+        column-rule-color: rgb(71, 71, 71);
+        perspective-origin: 86px 125px;
+        transform-origin: 86px 125px;
+        caret-color: rgb(71, 71, 71);
+        border: 0px none rgb(71, 71, 71);
+        font: normal normal 700 normal 16px / normal "PF Din Text Cond Pro";
+        margin: 0px 10px 0px 0px;
+        outline: rgb(71, 71, 71) none 0px;
+        overflow: hidden;
+        padding: 0px 10px;
+    }
+    /*#DIV_8*/
+
+    #DIV_9, #DIV_9, #DIV_9 {
+        box-sizing: border-box;
+        color: rgb(71, 71, 71);
+        height: 65px;
+        text-align: center;
+        text-decoration: none solid rgb(71, 71, 71);
+        text-size-adjust: 100%;
+        width: 152px;
+        column-rule-color: rgb(71, 71, 71);
+        perspective-origin: 76px 32.5px;
+        transform-origin: 76px 32.5px;
+        caret-color: rgb(71, 71, 71);
+        border: 0px none rgb(71, 71, 71);
+        font: normal normal 700 normal 16px / normal "PF Din Text Cond Pro";
+        margin: 20px 0px 0px;
+        outline: rgb(71, 71, 71) none 0px;
+    }
+    /*#DIV_9, #DIV_9, #DIV_9*/
+
+    #IMG_10 {
+        box-sizing: border-box;
+        color: rgb(71, 71, 71);
+        height: 60px;
+        max-height: 70px;
+        text-align: center;
+        text-decoration: none solid rgb(71, 71, 71);
+        text-size-adjust: 100%;
+        width: 94px;
+        column-rule-color: rgb(71, 71, 71);
+        perspective-origin: 47px 30px;
+        transform-origin: 47px 30px;
+        caret-color: rgb(71, 71, 71);
+        border: 0px none rgb(71, 71, 71);
+        font: normal normal 700 normal 16px / normal "PF Din Text Cond Pro";
+        outline: rgb(71, 71, 71) none 0px;
+    }
+    /*#IMG_10*/
+
+    #DIV_11, #DIV_17, #DIV_23, #DIV_29, #DIV_35 {
+        box-sizing: border-box;
+        color: rgb(71, 71, 71);
+        height: 30px;
+        text-align: center;
+        text-decoration: none solid rgb(71, 71, 71);
+        text-size-adjust: 100%;
+        width: 30px;
+        column-rule-color: rgb(71, 71, 71);
+        perspective-origin: 15px 15px;
+        transform-origin: 15px 15px;
+        caret-color: rgb(71, 71, 71);
+        background: rgb(255, 255, 255) none repeat scroll 0% 0% / auto padding-box border-box;
+        border: 3px solid rgb(71, 71, 71);
+        border-radius: 50% 50% 50% 50%;
+        font: normal normal 700 normal 16px / normal "PF Din Text Cond Pro";
+        margin: 20px 61px;
+        outline: rgb(71, 71, 71) none 0px;
+    }
+    /*#DIV_11, #DIV_17, #DIV_23, #DIV_29, #DIV_35*/
+
+    #DIV_12 {
+        box-sizing: border-box;
+        color: rgb(255, 0, 0);
+        height: 30px;
+        text-align: center;
+        text-decoration: none solid rgb(144, 172, 48);
+        text-size-adjust: 100%;
+        text-transform: uppercase;
+        width: 152px;
+        column-rule-color: rgb(144, 172, 48);
+        perspective-origin: 76px 15px;
+        transform-origin: 76px 15px;
+        caret-color: rgb(144, 172, 48);
+        border: 0px none rgb(144, 172, 48);
+        font: normal normal 700 normal 24px / normal "PF Din Text Cond Pro";
+        margin: 20px 0px 0px;
+        outline: rgb(144, 172, 48) none 0px;
+    }
+
+    #DIV_13 {
+        box-sizing: border-box;
+        color: rgb(71, 71, 71);
+        height: 60px;
+        text-align: center;
+        text-decoration: none solid rgb(71, 71, 71);
+        text-size-adjust: 100%;
+        width: 152px;
+        column-rule-color: rgb(71, 71, 71);
+        perspective-origin: 76px 30px;
+        transform-origin: 76px 30px;
+        caret-color: rgb(71, 71, 71);
+        border: 0px none rgb(71, 71, 71);
+        font: normal normal 700 normal 16px / normal "PF Din Text Cond Pro";
+        margin: 5px 0px 0px;
+        outline: rgb(71, 71, 71) none 0px;
+    }
+    /*#DIV_13*/
+
+    #IMG_16 {
+        box-sizing: border-box;
+        color: rgb(71, 71, 71);
+        height: 60px;
+        max-height: 70px;
+        text-align: center;
+        text-decoration: none solid rgb(71, 71, 71);
+        text-size-adjust: 100%;
+        width: 60px;
+        column-rule-color: rgb(71, 71, 71);
+        perspective-origin: 30px 30px;
+        transform-origin: 30px 30px;
+        caret-color: rgb(71, 71, 71);
+        border: 0px none rgb(71, 71, 71);
+        font: normal normal 700 normal 16px / normal "PF Din Text Cond Pro";
+        outline: rgb(71, 71, 71) none 0px;
+    }
+    /*#IMG_16*/
+
+
+    #IMG_22 {
+        box-sizing: border-box;
+        color: rgb(71, 71, 71);
+        height: 59px;
+        max-height: 70px;
+        text-align: center;
+        text-decoration: none solid rgb(71, 71, 71);
+        text-size-adjust: 100%;
+        width: 58px;
+        column-rule-color: rgb(71, 71, 71);
+        perspective-origin: 29px 29.5px;
+        transform-origin: 29px 29.5px;
+        caret-color: rgb(71, 71, 71);
+        border: 0px none rgb(71, 71, 71);
+        font: normal normal 700 normal 16px / normal "PF Din Text Cond Pro";
+        outline: rgb(71, 71, 71) none 0px;
+    }
+    /*#IMG_22*/
+
+
+
+    #IMG_28 {
+        box-sizing: border-box;
+        color: rgb(71, 71, 71);
+        height: 59px;
+        max-height: 70px;
+        text-align: center;
+        text-decoration: none solid rgb(71, 71, 71);
+        text-size-adjust: 100%;
+        width: 60px;
+        column-rule-color: rgb(71, 71, 71);
+        perspective-origin: 30px 29.5px;
+        transform-origin: 30px 29.5px;
+        caret-color: rgb(71, 71, 71);
+        border: 0px none rgb(71, 71, 71);
+        font: normal normal 700 normal 16px / normal "PF Din Text Cond Pro";
+        outline: rgb(71, 71, 71) none 0px;
+    }
+    /*#IMG_28*/
+
+    #DIV_13 {
+        box-sizing: border-box;
+        color: rgb(71, 71, 71);
+        height: 40px;
+        text-align: center;
+        text-decoration: none solid rgb(71, 71, 71);
+        text-size-adjust: 100%;
+        width: 152px;
+        column-rule-color: rgb(71, 71, 71);
+        perspective-origin: 76px 20px;
+        transform-origin: 76px 20px;
+        caret-color: rgb(71, 71, 71);
+        border: 0px none rgb(71, 71, 71);
+        font: normal normal 700 normal 16px / normal "PF Din Text Cond Pro";
+        margin: 5px 0px 0px;
+        outline: rgb(71, 71, 71) none 0px;
+    }
+    /*#DIV_13*/
+
+
+    #IMG_34 {
+        box-sizing: border-box;
+        color: rgb(71, 71, 71);
+        height: 60px;
+        max-height: 70px;
+        text-align: center;
+        text-decoration: none solid rgb(71, 71, 71);
+        text-size-adjust: 100%;
+        width: 64px;
+        column-rule-color: rgb(71, 71, 71);
+        perspective-origin: 32px 30px;
+        transform-origin: 32px 30px;
+        caret-color: rgb(71, 71, 71);
+        border: 0px none rgb(71, 71, 71);
+        font: normal normal 700 normal 16px / normal "PF Din Text Cond Pro";
+        outline: rgb(71, 71, 71) none 0px;
+    }
+    /*#IMG_34*/
+
+    #DIV_37 {
+        box-sizing: border-box;
+        color: rgb(71, 71, 71);
+        height: 100px;
+        text-align: center;
+        text-decoration: none solid rgb(71, 71, 71);
+        text-size-adjust: 100%;
+        width: 152px;
+        column-rule-color: rgb(71, 71, 71);
+        perspective-origin: 76px 50px;
+        transform-origin: 76px 50px;
+        caret-color: rgb(71, 71, 71);
+        border: 0px none rgb(71, 71, 71);
+        font: normal normal 700 normal 16px / normal "PF Din Text Cond Pro";
+        margin: 5px 0px 0px;
+        outline: rgb(71, 71, 71) none 0px;
+    }
+    /*#DIV_37*/
+
+    #BR_38 {
+        box-sizing: border-box;
+        color: rgb(71, 71, 71);
+        text-align: center;
+        text-decoration: none solid rgb(71, 71, 71);
+        text-size-adjust: 100%;
+        column-rule-color: rgb(71, 71, 71);
+        caret-color: rgb(71, 71, 71);
+        border: 0px none rgb(71, 71, 71);
+        font: normal normal 700 normal 16px / normal "PF Din Text Cond Pro";
+        outline: rgb(71, 71, 71) none 0px;
+    }
+    /*#BR_38*/
+
+    #A_39 {
+        box-sizing: border-box;
+        color: rgb(144, 172, 48);
+        display: inline-block;
+        height: 60px;
+        text-align: center;
+        text-decoration: none solid rgb(144, 172, 48);
+        text-size-adjust: 100%;
+        width: 152px;
+        column-rule-color: rgb(144, 172, 48);
+        perspective-origin: 76px 30px;
+        transform-origin: 76px 30px;
+        caret-color: rgb(144, 172, 48);
+        border: 0px none rgb(144, 172, 48);
+        font: normal normal 700 normal 16px / normal "PF Din Text Cond Pro";
+        outline: rgb(144, 172, 48) none 0px;
+    }
+    /*#A_39*/
+</style>
